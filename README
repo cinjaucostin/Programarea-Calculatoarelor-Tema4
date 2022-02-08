@@ -1,0 +1,50 @@
+    ->TASK1
+-Am descoperit regula dupa care sunt construite matricele si dupa aceea m-am folosit de doua structuri de tip for pentru a afisa i-ul(luat in ordine crescatoare) si j-ul(luat in ordine descrescatoare).
+-Pentru a printa elementele matricei ca un sir de caractere m-am folosit de functia sprintf cu care am introdus cate un element intr-un buffer.
+-Ulterior cu ajutorul functiei strcat am introdus la fiecare pas in sirul de caractere pe care il voi returna elementul calculat in pasul respectiv.
+-Am fost nevoit sa recurg la functia strcat deoarece functia sprtinf face overwrite la buffer de fiecare data cand este apelata.
+
+    ->TASK2
+-Am ales sa castez input-ul la un sir de caractere.
+-Am creat un vector de delimitatori format doar din caracterul "_" iar cu ajutorul functiei strtok am extras doar caracterele ce reprezinta numere intregi.
+-Cu ajutorul functiei atoi am transformat caracterele in variabile de tip int, iar acestor variabile obtinute le-am facut suma pentru a obtine decodificarea ceruta.
+-Tot cu ajutorul functiei sprintf am pus in buffer valoare decodificarii,  buffer pe care la sfarsitul functiei aveam sa-l returnez.
+
+    ->TASK3
+-Am castat inputul la un sir de intregi.
+-In cazul in care primul element din input era par am schimbat interschimbat elementele de pe pozitii consecutive.
+-Dupa aceeasi idee ca la task1 m-am folosit de functiile sprintf si strcat pentru a introduce elementele in sirul pe care il returnam la sfarsitul functiei.
+-In cazul in care primul element din input era impar nu am facut decat sa iau inputul in ordine inversa si sa il introduc cu ajutorul acelorasi doua functii in sirul pe care trebuia sa il returnez.
+
+    ->TASK4
+-Am alocat memoria ceruta pentru fiecare camp de timp pointer din interiorul fiecarei structuri de tip Player sau Game cu ajutorul functiei malloc.
+-Am actualizat campul alive cu valoarea 1 si campul indexOfLocation cu valoarea 0 al structurii de tip Player.(acest lucru va fi util atat la task7  cat si la task8)
+
+    ->TASK5
+#Functia ReadPlayer:
+-Am citit in ordinea in care apar in fisier datele despre fiecare player cu ajutorul functiei fscanf.
+-M-am folosit de un vector auxiliar pentru a introduce coordonatele fiecarui player in structura de tip locations specifica fiecaruia.
+-In vectorul auxiliar am introdus coordonatele dupa urmatoarea regula:x1 y1 x2 y2 x3 y3 ... xn yn.
+-Cand am introdus valorile in structura de locatii am facut-o cu ajutorul unui for in care parcurgeam din 2 in 2 vectorul de coordonate; in coordonata x introduceam valoarea din *(coordonate+i) iar in coordonata y valoarea din *(coordonate+i+1).
+-In ceea ce priveste campul playerRole, daca in fisierul de input playerul este definit ca fiind Rotator atunci in playerRole introducem 0, daca este definit ca fiind Decoder atunci in playerRole introducem 1, etc.
+#Functia ReadGame:
+-Dupa ordinea care ne-a fost oferita in exemplu am citit elementele din input.
+-Cu ajutorul unui for am apelat functia ReadPlayer pentru fiecare crewmate in parte, inclusiv pentru impostor.
+
+    ->TASK6
+-M-am folosit de functia fprintf pentru a printa in outputFile datele cerute despre joc si fiecare player in parte.
+-Printarea am facut-o dupa regulile date in exemplu(unde trebuiau puse newline-uri sau tab-uri).
+
+    ->TASK7
+-Ideea principala dupa care m-am ghidat in acest task a fost calculul distantei locatia curenta a impostorului la locatia curenta a fiecarui crewmate in parte.
+-In cazul in care minimul obtinut la final este mai mic decat gameRange-ul stabilit inseamna ca impostorul poate sa omoare un crewmate si afisam mesajul corespunzator, respectiv realizam schimbarile necesare(campul alive al respectivului player devine 0)
+-Iar in cazul in care minimul obtinut este mai mare decat gameRange-ul stabilit inseamna ca impostorul nu poate scoate din joc niciun player si afisam mesajul aferent acestei situatii.
+
+    ->TASK8
+-Pentru fiecare crewmate in parte ne foloseam de linia din matrice corespunzatoare acestuia pe care aplicam si abilitatea acestui player, respectiv printam mesajul specific acestei situatii.
+-In cazul in care player-ul este mort acesta nu isi va realiza abilitatea asupra liniei sale din matrice si se va afisa un mesaj specific.
+-Acelasi lucru il facem si pentru impostor:la fiecare pas se apeleaza functia killPlayer; in cazul in care acesta poate omora un crewmate se afiseaza un anumit mesaj iar daca acesta nu poate ucide pe nimeni se va afisa un alt mesaj specific.
+
+    ->TASK9
+-In ceea ce priveste eliberarea memoriei ocupate m-am folosit de utilitarul valgrind pentru a vedea unde se produc pierderi de memorie.
+-Pentru fiecare pierdere de memorie m-am folosit de functia free pentru a elibera memoria din locul unde aceasta se pierde.
